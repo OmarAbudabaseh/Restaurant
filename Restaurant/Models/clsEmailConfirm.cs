@@ -10,8 +10,8 @@ namespace Restaurant.Models
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
 
-            var fMail = "omardabaseh625@gmail.com";
-            var fPassword = "Omar23510178";
+            var fMail = "YourEmail";
+            var fPassword = "Password";
 
 
             var theMsg = new MailMessage();
