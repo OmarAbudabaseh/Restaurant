@@ -1,0 +1,49 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<Category>
+@{        
+    ViewData["Title"] = "Categories";
+}
+<div class="container">
+    <partial name="_Notifications" />
+    <div class="row">
+        <div class="col-6">
+            <h1>Category View</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn bg-black text-white border-5" asp-controller="Category" asp-action="New">Add New</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered border-5 table-striped"  style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                  {
+                    <tr>
+                        <td width="25%">
+                            @category.Id
+                        </td>
+                        <td width="25%">
+                            @category.CategoryName
+                        </td>
+                        <td width="25%">
+                            <a asp-action="Edit" asp-controller="Category" asp-route-Id="@category.Id" class="btn btn-light me-5 text-center">
+                                <i class="bi bi-pen"></i>
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-Id="@category.Id" class="btn btn-danger me-5 text-center">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

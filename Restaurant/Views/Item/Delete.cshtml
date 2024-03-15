@@ -1,0 +1,41 @@
+﻿@model Restaurant.Models.Item
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Item</h1>
+<form method="post" asp-action="DeleteItem">
+    <input asp-for="Id" hidden />
+    <div class="border border-3">
+        <div class="row m-3">
+            <h1>Add new Item</h1>
+            <hr />
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3">
+                <label asp-for="ItemName" class="m-1"></label>
+                <input asp-for="ItemName" class="form-control m-1" disabled />
+            </div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="Price" class="m-1"></label>
+                <input asp-for="Price" class="form-control m-1" disabled />
+            </div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="CategoryId">Category:</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryList" disabled>
+                    <option>اختر فئة الطعام</option>
+                </select>
+            </div>
+            <hr />
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary me-2" style="width:180px; height:50px">Delete</button>
+                <a asp-action="Index" asp-controller="Item" class="btn btn-secondary me-2" style="width:180px; height:50px;">Back to Items</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,56 @@
+﻿@model Restaurant.Models.Item
+@{
+    ViewData["Title"] = "New";
+}
+
+<h1>Create New Item</h1>
+<form method="post" enctype="multipart/form-data">
+    <div class="border border-3">
+        <div class="row m-3">
+            <h1>Add new Item</h1>
+            <hr />
+            <div asp-validation-summary="All"></div>
+            <div class="mb-3">
+                <label asp-for="ItemName" class="m-1"></label>
+                <input asp-for="ItemName" class="form-control m-1" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="Price" class="m-1"></label>
+                <input asp-for="Price" class="form-control m-1" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="mb-3">
+                <label asp-for="CategoryId">Category:</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryList">
+                    <option>اختر فئة الطعام</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="file" asp-for="clientFile" onchange="loadFile(event)" />
+                <img id="myImg" height="200"  />
+            </div>
+            <hr />
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary me-2" style="width:180px; height:50px">Save</button>
+                <a asp-action="Index" asp-controller="Item" class="btn btn-secondary me-2" style="width:180px; height:50px;">Back to Items</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        var loadFile = function(event){
+            var reader = new FileReader();
+            reader.onload = function () {
+                var myImg = document.getElementById('myImg');
+                myImg.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}
